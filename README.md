@@ -1,4 +1,6 @@
 
+<div style="text-align: justify">
+
 # Chill projections for the Mediterranean region
 
 This repository contains the code and part of the data generated to
@@ -24,6 +26,8 @@ located between the latitude 25° and 48°.
 <a><img src='figures/available_WS_filtered_latitude_v2.png' align="center" height="450" /></a>
 
 </center>
+
+</div>
 
 # References
 

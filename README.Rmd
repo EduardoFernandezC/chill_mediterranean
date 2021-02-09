@@ -12,6 +12,7 @@ knitr::write_bib(c(.packages(),
                    'ggplot2'), 'packages.bib')
 ```
 
+<div style="text-align: justify">
 
 # Chill projections for the Mediterranean region
 
@@ -26,5 +27,7 @@ Using the `chillR` package [@R-chillR], we listed 5,000 available weather statio
 <center>
 <a><img src='figures/available_WS_filtered_latitude_v2.png' align="center" height="450" /></a>
 </center>
+
+</div>
 
 # References
