@@ -12,8 +12,6 @@ knitr::write_bib(c(.packages(),
                    'ggplot2'), 'packages.bib')
 ```
 
-<!-- Justify text. -->
-<style> body {text-align: justify} </style> 
 
 # Chill projections for the Mediterranean region
 

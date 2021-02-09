@@ -1,8 +1,4 @@
 
-<!-- Justify text. -->
-
-<style> body {text-align: justify} </style>
-
 # Chill projections for the Mediterranean region
 
 This repository contains the code and part of the data generated to
