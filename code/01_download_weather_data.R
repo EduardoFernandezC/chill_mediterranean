@@ -79,10 +79,6 @@ WS_no_data <- which(weather_data == "No data")
 
 weather_data_filtered <- weather_data[-WS_no_data]
 
-# Do the same for the data frame containing the information on the weather stations
-
-weather_stations_filtered <- weather_stations[!(weather_stations$STATION.NAME %in% names(WS_no_data)), ]
-
 # Use make_all_day_table to complete the missing days
 
 weather_data_filtered <- lapply(weather_data_filtered, make_all_day_table)
