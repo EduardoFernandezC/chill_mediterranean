@@ -45,16 +45,17 @@ weather_data <- list()
 #
 # Please replace the vector 'xx : xx' with your numbers
 
-for (i in xx : xx) {
+for (i in 726 : 792) {
   
   # Download the data for the weather station 'i'. I will use suppressWarnings() because the function produces
   # a warning in case no data is found for the period of interest. Since we are aware of that, we can skip the
   # the warning and deal with the problem in a later step
   
-  data <- suppressWarnings(handle_gsod("download_weather",
-                                       location = as.character(weather_stations[i, "chillR_code"]),
-                                       time_interval = c(1974, 2020),
-                                       station_list = weather_stations))
+  data <- suppressWarnings(handle_gsod_2("download_weather",
+                                         location = as.character(weather_stations[i, "chillR_code"]),
+                                         time_interval = c(1974, 2020),
+                                         station_list = weather_stations,
+                                         quiet = TRUE))
   
   # Convert the downloaded data into chillR format
   
@@ -78,6 +79,10 @@ WS_no_data <- which(weather_data == "No data")
 # Remove these weather stations from the weather_data list
 
 weather_data_filtered <- weather_data[-WS_no_data]
+
+# Remove the empty elements
+
+weather_data_filtered <- weather_data_filtered[!is.na(names(weather_data_filtered))]
 
 # Use make_all_day_table to complete the missing days
 
