@@ -45,7 +45,7 @@ weather_data <- list()
 #
 # Please replace the vector 'xx : xx' with your numbers
 
-for (i in 726 : 792) {
+for (i in 398 : 442) {
   
   # Download the data for the weather station 'i'. I will use suppressWarnings() because the function produces
   # a warning in case no data is found for the period of interest. Since we are aware of that, we can skip the
@@ -90,7 +90,9 @@ weather_data_filtered <- lapply(weather_data_filtered, make_all_day_table)
 
 # Save the downloaded data in the respective folder
 
-save_temperature_scenarios(weather_data_filtered, "data", prefix = "downloaded_data")
+save_temperature_scenarios(weather_data_filtered,
+                           "data/historic_temps",
+                           prefix = "downloaded_data")
 
 
 
