@@ -40,3 +40,6 @@ vignettes/*.pdf
 
 # excluding the data
 data/
+
+# excluding Rdata files
+*.RData
