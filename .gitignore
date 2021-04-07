@@ -43,3 +43,6 @@ data/
 
 # excluding Rdata files
 *.RData
+
+# Excluding desktop files for mac
+.DS_Store
