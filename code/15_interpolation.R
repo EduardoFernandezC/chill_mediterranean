@@ -116,28 +116,38 @@ f_max_temp_jan <- as.formula(max_temp_jan_70_00 ~ Long + Lat)
 
 # Set up the variogram
 
-var_smpl_min_temp_jan <- variogram(f_min_temp_jan, Porig)
-var_smpl_max_temp_jan <- variogram(f_max_temp_jan, Porig)
+#var_smpl_min_temp_jan <- variogram(f_min_temp_jan, Porig)
+#var_smpl_max_temp_jan <- variogram(f_max_temp_jan, Porig)
 
 # Fit the variogrma
 
-dat_fit_min_temp_jan <- fit.variogram(var_smpl_min_temp_jan, fit.ranges = FALSE,
-                                      fit.sills = FALSE, 
-                                      vgm(model = "Sph", range = 800, psil = 9, nugget = 1.5))
+# dat_fit_min_temp_jan <- fit.variogram(var_smpl_min_temp_jan, fit.ranges = FALSE,
+#                                       fit.sills = FALSE, 
+#                                       vgm(model = "Sph", range = 800, psil = 9, nugget = 1.5))
 
-dat_fit_max_temp_jan <- fit.variogram(var_smpl_max_temp_jan, fit.ranges = FALSE,
-                                      fit.sills = FALSE, 
-                                      vgm(model = "Sph", range = 700, psil = 5, nugget = 2.7))
+# dat_fit_max_temp_jan <- fit.variogram(var_smpl_max_temp_jan, fit.ranges = FALSE,
+#                                       fit.sills = FALSE, 
+#                                       vgm(model = "Sph", range = 700, psil = 5, nugget = 2.7))
 
 # Check the variogram (re-adjust psil and nugget if needed)
 
-plot(var_smpl_min_temp_jan, dat_fit_min_temp_jan)
-plot(var_smpl_max_temp_jan, dat_fit_max_temp_jan)
+# plot(var_smpl_min_temp_jan, dat_fit_min_temp_jan)
+# plot(var_smpl_max_temp_jan, dat_fit_max_temp_jan)
+
+
+# At this point I will try to use a different approach by using a function that fits automatically the
+# variogram based on the data. This may be helpful since there will be no need to set the nugget, psill, and
+# range manually
+
+var_smpl_min_temp_jan <- automap::autofitVariogram(f_min_temp_jan, Porig)
+var_smpl_max_temp_jan <- automap::autofitVariogram(f_max_temp_jan, Porig)
+
+# Use the outputs in the kriging function
 
 # Implement the kriging
 
-dat_krg_min_temp_jan <- krige(f_min_temp_jan, Porig, grd, dat_fit_min_temp_jan)
-dat_krg_max_temp_jan <- krige(f_max_temp_jan, Porig, grd, dat_fit_max_temp_jan)
+dat_krg_min_temp_jan <- krige(f_min_temp_jan, Porig, grd, var_smpl_min_temp_jan$var_model)
+dat_krg_max_temp_jan <- krige(f_max_temp_jan, Porig, grd, var_smpl_max_temp_jan$var_model)
 
 # Transform the kriged surface to a raster object and cut for the margins of the region
 
@@ -156,7 +166,7 @@ temp_diff_max <- r_m_max - max_temp_jan_res
 data$is_outlier_tmin <- abs(data$min_temp_jan_70_00 - data$mean_Tmin_hist_jan_74_00) > 2
 data$is_outlier_tmax <- abs(data$max_temp_jan_70_00 - data$mean_Tmax_hist_jan_74_00) > 2
 
-# Remove the stations with huge difference above 2 °C
+# Remove the stations with huge difference (above 2 °C)
 
 stations_clean <- data[!(data$is_outlier_tmin | data$is_outlier_tmax), ]
 
@@ -164,9 +174,9 @@ stations_clean <- data[!(data$is_outlier_tmin | data$is_outlier_tmax), ]
 # needs to be used in a loop / apply function
 
 get_chill_correction <-  function(tmin, tmax, lookup = pred){
-  if(is.na(tmin) == T){
+  if(is.na(tmin)){
     return(NA)
-  } else if(is.na(tmax) == T){
+  } else if(is.na(tmax)){
     return(NA)
   } else{
     tmin_index <- which.min(abs(lookup$x - tmin))
@@ -189,6 +199,9 @@ width <- 19
 # dir.create("figures/interpolation/")
 # dir.create("figures/interpolation/correction_plane/")
 # dir.create("figures/interpolation/maps/")
+# dir.create("figures/interpolation/maps/estimation/")
+# dir.create("figures/interpolation/maps/correction/")
+# dir.create("figures/interpolation/maps/change/")
 
 # Here we implement the for loop for interpolating chill based on a 3D model (also saved as a figure)
 
@@ -200,15 +213,15 @@ for(scen in scenarios){
   
   pred <- predictSurface(k)
   
-  #error <- predictSurfaceSE(k)
+  # error <- predictSurfaceSE(k)
   
   # Adjust row and column name of object pred
   
   colnames(pred$z) <- pred$y
   rownames(pred$z) <- pred$x
   
-  #colnames(error$z)<-error$y
-  #rownames(error$z)<-error$x
+  #colnames(error$z) <- error$y
+  #rownames(error$z) <- error$x
   
   # Melt to df
   
@@ -304,7 +317,7 @@ for(scen in scenarios){
   crs(raster_model_adjust) <- crs(r_m_min)
   
   #raster_model_orig <- raster(model_orig)
-  #raster_model_orig <- setExtent(raster_model_orig,bb)
+  #raster_model_orig <- setExtent(raster_model_orig, bb)
   #crs(raster_model_orig) <- crs(r.m_min)
   
   #raster_model_krig <- raster(model_krig)
@@ -321,21 +334,26 @@ for(scen in scenarios){
   # parameters passed to variogram(). This tells the function to create the
   # variogram on the de-trended data.
   
-  var.smpl <- variogram(f.1, Porig, cloud = FALSE)
+  # var.smpl <- variogram(f.1, Porig, cloud = FALSE)
   
   # Compute the variogram model by passing the nugget, sill and range values
   # to fit.variogram() via the vgm() function.
   
-  dat.fit <- fit.variogram(var.smpl, fit.ranges = FALSE, fit.sills = FALSE,
-                           vgm(psill = 100, model = "Sph", nugget = 130, range = 1000))
+  # dat.fit <- fit.variogram(var.smpl, fit.ranges = FALSE, fit.sills = FALSE,
+  #                          vgm(psill = 100, model = "Sph", nugget = 130, range = 1000))
   
   # Check the variogram  
-  plot(var.smpl,dat.fit)
+  
+  # plot(var.smpl,dat.fit)
+  
+  # Implement the kriging using the autofiting variogram
+  
+  var.smpl <- automap::autofitVariogram(f.1, Porig, cloud = FALSE)
   
   # Perform the krige interpolation (note the use of the variogram model
   # created in the earlier step)
   
-  dat.krg.chil <- krige(f.1, Porig, grd, dat.fit)
+  dat.krg.chil <- krige(f.1, Porig, grd, var.smpl$var_model)
   
   # Assign kriged data to the raster
   
@@ -355,7 +373,7 @@ for(scen in scenarios){
   chill_list <- append(chill_list, r.m)
   
   
-  f_name <- paste0('figures/interpolation/maps/adjusted_chill_', scen, '.png')
+  f_name <- paste0('figures/interpolation/maps/estimation/adjusted_chill_', scen, '.png')
   
   chill_map <- tm_shape(mediterranean_base,  bbox = st_bbox(extent(-10.5, 45.3, 25.25, 50))) +
     tm_lines(col = 'grey') +
@@ -379,7 +397,7 @@ for(scen in scenarios){
   
   new_seq <- seq(-50, 90, by = 10)
   
-  f_name <- paste0('figures/interpolation/maps/chill_correction_', scen, '.png')
+  f_name <- paste0('figures/interpolation/maps/correction/chill_correction_', scen, '.png')
   
   chill_correction <- tm_shape(mediterranean_base, bbox = st_bbox(extent(-10.5, 45.3, 25.25, 50))) +
     tm_lines(col = "grey50") +
@@ -400,7 +418,95 @@ for(scen in scenarios){
   chill_correction
   
   tmap_save(chill_correction, filename = f_name,height = height, width = width, units = 'cm')  
-} #end of loop to create interpolation maps
+
+} # End of loop to create interpolation maps
+
+
+
+# Compute the maps for change in chill accumulation
+
+# Change names in the list to scenario names
+
+names(chill_list) <- scenarios
+
+# Generate a baseline raster scenario based on the median across historic simulated scenarios
+
+brick_raster <- brick(chill_list[2 : 11])
+
+# Estimate the median across raster layers
+
+median_raster_scen <- calc(brick_raster, median)
+
+# Loop for change 2017 to future scenarios
+
+for(scen in scenarios[12 : 23]){
+  
+  # Create file name
+  f_name <- paste0('figures/interpolation/maps/change/change_hist_sim_vs_', scen, '.png')
+  
+  #split scenario name because so long
+  x <- strsplit(scen, split = '_')
+  
+  change_map <- tm_shape(mediterranean_base, bbox = st_bbox(extent(-10.5, 45.3, 25.25, 50))) +
+    tm_lines(col = 'grey') +
+    tm_shape(chill_list[[scen]] - median_raster_scen) +
+    tm_raster(palette = get_brewer_pal("RdBu", contrast = c(0, 0.75)),
+              midpoint = 0,
+              title = paste('Median historic simulated to ', x[[1]][2], '\n', x[[1]][1], ' ',
+                            x[[1]][3], '\nchange in chill portions', sep = ''),
+              breaks = seq(-60, 30, by = 10), style = "cont", legend.reverse = TRUE) +
+    tm_shape(Porig) +
+    tm_symbols(size = 0.2, shape = 4, col = 'black') +
+    tm_shape(mediterranean) +
+    tm_borders(col = 'black') +
+    tm_graticules(lines = F) +
+    tm_compass(position = c(0.02, 0.8)) +
+    tm_scale_bar(position = c(0.0225, 0.005), bg.color = "grey95", width = 0.15) +
+    tm_layout(legend.outside = T, outer.margins = c(0.001, 0.001, 0, 0.001))
+  
+  change_map
+  
+  tmap_save(change_map, filename = f_name,height = height, width = width, units = 'cm')  
+  
+}
+
+
+# Calculate change 1975 to 2019 (2019 minus 1975)
+
+scen <- scenarios[2]
+
+f_name <- paste0('figures/interpolation/maps/change/change_2017_', scen, '.png')
+
+# Split scenario name because so long
+
+x <- strsplit(scen, split = '_')
+
+change_map <- tm_shape(mediterranean_base, bbox = st_bbox(extent(-10.5, 45.3, 25.25, 50))) +
+  tm_lines(col = 'grey') +
+  tm_shape(chill_list[["Past_sim_2019"]] - chill_list[[scen]]) +
+  tm_raster(palette = get_brewer_pal("RdBu", contrast = c(0, 0.75)),
+            midpoint = 0,
+            title = '1975 to 2019\nChange in chill portions',
+            breaks = seq(-20, 20, 5),
+            style = "cont", legend.reverse = TRUE) +
+  tm_shape(Porig) +
+  tm_symbols(size = 0.2, shape = 4, col = 'black') + 
+  tm_shape(mediterranean) +
+  tm_borders(col = 'black') +
+  tm_graticules(lines = F) +
+  tm_compass(position = c(0.02, 0.8)) +
+  tm_scale_bar(position = c(0.0225, 0.005), bg.color = "grey95", width = 0.15) +
+  tm_layout(legend.outside = T, outer.margins = c(0.001, 0.001, 0, 0.001))
+
+change_map
+
+tmap_save(change_map, filename = f_name, height = height, width = width, units = 'cm')  
+
+
+
+
+
+
 
 
 
