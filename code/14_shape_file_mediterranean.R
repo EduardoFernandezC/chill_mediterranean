@@ -23,7 +23,7 @@ Porig <- SpatialPointsDataFrame(data[, c("Long","Lat")],
 data("World")
 
 # Define the limits for the region
-med_extent <- extent(-1100000, 4300000, 3200000, 6300000)
+med_extent <- extent(-1500000, 4300000, 3200000, 6300000)
 
 # Convert to spatial
 Med <- as_Spatial(World)

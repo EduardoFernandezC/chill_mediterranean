@@ -236,3 +236,14 @@ dir.create("data/nasapower_patched")
 
 save_temperature_scenarios(lapply(stations_to_interpolate_data, function(x) x[["weather"]]),
                            "data/nasapower_patched/", prefix = "nasa_patched")
+
+
+# Take a look at the nasapower patching procedure
+
+nasa_patched_QC <- read.csv("data/quality_check_nasa_patching.csv")
+
+GSOD_patched_QC <- read.csv("data/quality_check_patching.csv")
+
+
+
+ 

@@ -77,12 +77,19 @@ countries <- borders("world",
 # Plot the stations in a map
 
 ggplot() + countries + 
-  geom_point(aes(Long, Lat), data = weather_stations_90_complete, color = "black", size = 1) +
-  labs(x = "Longitude", y = "Latitude") +
-  coord_equal(xlim = c(-20, 50),
-              ylim = c(15, 65))
+  geom_point(aes(Long, Lat, shape = "Weather station"), data = weather_stations_90_complete,
+             color = "black", size = 1) +
+  scale_y_continuous(labels = function(x) paste0(x, " °N")) +
+  scale_x_continuous(breaks = c(-10, 0, 10, 20, 30, 40),
+                     labels = c("10 °W", "0 °", "10 °E", "20 °E", "30 °E", "40 °E")) +
+  scale_shape_manual(values = 4) +
+  coord_equal(xlim = c(-8.5, 46),
+              ylim = c(20, 50)) +
+  theme(axis.title = element_blank(),
+        legend.title = element_blank(),
+        legend.position = "bottom")
 
-ggsave("figures/available_WS_90_complete.png", height = 5.05, width = 6.5, dpi = 600)
+ggsave("figures/available_WS_90_complete_v2.png", height = 5.05, width = 6.5, dpi = 600)
 
 
 # Plot the percentage of data complete
@@ -108,6 +115,11 @@ libya_egypt_70 <- weather_stations_filtered[weather_stations_filtered$Percentage
 
 weather_data_90 <- weather_data[c(weather_stations_90_complete$STATION.NAME,
                                   libya_egypt_70$STATION.NAME)]
+
+
+# Weather stations 90 plus Libya and Egypt
+
+weather_stations_90_plus_LB_EG <- bind_rows(weather_stations_90_complete, libya_egypt_70)
 
 
 # Select the auxiliary list and data frame to be used as patching list

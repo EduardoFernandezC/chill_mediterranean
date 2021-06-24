@@ -50,19 +50,19 @@ data("World")
 mediterranean_base <- cartography::hatchedLayer(x = World, mode = "sfc", pattern = "right2left", density = 10)
 
 # Set the boundaries of the Mediterranean region
-mediterranean_region <- extent(-1100000, 4300000, 3200000, 6300000)
+#mediterranean_region <- extent(-1300000, 4300000, 3300000, 6300000)
 
 # Convert the mediterranean base data to spatial object
 mediterranean_base <- as_Spatial(mediterranean_base)
 
 # Crop the required area only
-mediterranean_base <- crop(mediterranean_base, mediterranean_region)
+#mediterranean_base <- crop(mediterranean_base, mediterranean_region)
 
 # Transform to map
 mediterranean_base <- spTransform(mediterranean_base, CRSobj = crs(Porig))
 
 # Dashes plot check
-tm_shape(mediterranean_base,  bbox = st_bbox(extent(-15, 45.3, 25.25, 50))) +
+tm_shape(mediterranean_base,  bbox = st_bbox(extent(-15, 45.3, 20, 50))) +
   tm_lines(col = "grey50") +
   tm_shape(mediterranean) + 
   tm_borders(col = 'black') +
@@ -89,6 +89,26 @@ proj4string(grd) <- proj4string(Porig)
 # Save the scenario names for further use in the for loop
 
 scenarios <- colnames(select(data, starts_with(c("Past", "rcp"))))
+
+# Create good scenario names to use in the main title of the plot
+scenarios_fixed <- c(Past_obs_CP = "Historic observed", Past_sim_1975 = "Historic simulated (1975)",
+                     Past_sim_1980 = "Historic simulated (1980)", Past_sim_1985 = "Historic simulated (1985)",
+                     Past_sim_1990 = "Historic simulated (1990)", Past_sim_1995 = "Historic simulated (1995)",
+                     Past_sim_2000 = "Historic simulated (2000)", Past_sim_2005 = "Historic simulated (2005)",
+                     Past_sim_2010 = "Historic simulated (2010)", Past_sim_2015 = "Historic simulated (2015)",
+                     Past_sim_2019 = "Historic simulated (2019)", rcp45_2050_optimistic_CP = "RCP4.5 - 2050 optimistic",
+                     rcp45_2050_intermediate_CP = "RCP4.5 - 2050 intermediate",
+                     rcp45_2050_pessimistic_CP = "RCP4.5 - 2050 pessimistic",
+                     rcp45_2085_optimistic_CP = "RCP4.5 - 2085 optimistic",
+                     rcp45_2085_intermediate_CP = "RCP4.5 - 2085 intermediate",
+                     rcp45_2085_pessimistic_CP = "RCP4.5 - 2085 pessimistic",
+                     rcp85_2050_optimistic_CP = "RCP8.5 - 2050 optimistic",
+                     rcp85_2050_intermediate_CP = "RCP8.5 - 2050 intermediate",
+                     rcp85_2050_pessimistic_CP = "RCP8.5 - 2050 pessimistic",
+                     rcp85_2085_optimistic_CP = "RCP8.5 - 2085 optimistic",
+                     rcp85_2085_intermediate_CP = "RCP8.5 - 2085 intermediate",
+                     rcp85_2085_pessimistic_CP = "RCP8.5 - 2085 pessimistic" )
+
 
 # Load Tmin and Tmax data from the WorldClim for Jan (still need to check if Dec or Feb is better)
 
@@ -189,6 +209,10 @@ get_chill_correction <-  function(tmin, tmax, lookup = pred){
 
 chill_list <- list() 
 
+# Create a list to save the plots
+
+chill_plot <- list()
+
 # Set height and width (cm) for maps when maps are saved
 
 height <- 17
@@ -251,9 +275,11 @@ for(scen in scenarios){
     xlab('Minimum temperature in January (°C)') +
     theme_bw(base_size = 12)
   
-  ggsave(plot = correction_plane,
-         filename = paste0('figures/interpolation/correction_plane/', scen, '.png'),
-         height = 10, width = 15, units = 'cm', dpi = 600)
+  correction_plane
+  
+  # ggsave(plot = correction_plane,
+  #        filename = paste0('figures/interpolation/correction_plane/', scen, '.png'),
+  #        height = 10, width = 15, units = 'cm', dpi = 600)
   
   # Save then number of rows and cols
   no_row <- nrow(r_m_min)
@@ -375,25 +401,50 @@ for(scen in scenarios){
   
   f_name <- paste0('figures/interpolation/maps/estimation/adjusted_chill_', scen, '.png')
   
-  chill_map <- tm_shape(mediterranean_base,  bbox = st_bbox(extent(-10.5, 45.3, 25.25, 50))) +
-    tm_lines(col = 'grey') +
+  chill_map <- tm_shape(mediterranean,  bbox = st_bbox(extent(-10, 45.3, 21, 49))) +
+    tm_fill(col = 'grey10') +
+    tm_shape(mediterranean_base) +
+    tm_lines(col = 'grey35') +
     tm_shape(r.m) +
-    tm_raster(palette = get_brewer_pal("RdBu", contrast = c(0, 0.75)),
-              midpoint = 30, 
-              title = paste(scen, "\nSafe winter Chill \n(Chill Portions)\nCorrected for Tmin, Tmax", sep = ''),
-              breaks = seq(0, 100, by = 10), style = "cont", legend.reverse = TRUE) +
-    tm_shape(Porig) + 
-    tm_symbols(size = 0.2, shape = 4, col = 'black') +
+    tm_raster(palette = get_brewer_pal('RdYlBu', n = 20),
+              title = "        Safe Winter Chill",
+              midpoint = 30,
+              breaks = seq(0, 100, by = 30), style = "cont", legend.reverse = TRUE,
+              legend.format = list(suffix = " CP", text.align = "center"), 
+              legend.is.portrait = FALSE) +
     tm_shape(mediterranean) +
-    tm_borders(col = 'black') +
-    tm_graticules(lines = F) +
-    tm_compass(position = c(0.02, 0.8)) +
-    tm_scale_bar(position = c(0.0225, 0.005), bg.color = "grey95", width = 0.15) +
-    tm_layout(legend.outside = T, outer.margins = c(0.001, 0.001, 0, 0.001))
+    tm_borders(col = 'grey40') +
+    tm_shape(Porig) + 
+    tm_symbols(size = 0.15, shape = 4, col = 'firebrick') +
+    tm_graticules(lines = F, labels.col = "black") +
+    tm_compass(position = c(0.035, 0.885), size = 1.75, text.size = 0.8) +
+    tm_scale_bar(position = c(0.005, 0.81), bg.color = "transparent", breaks = c(0, 200, 400, 600),
+                 text.size = 0.6,  color.dark = "grey20") +
+    tm_add_legend(type = "line", labels = "Excluded", col = "grey35", lwd = 3) +
+    tm_add_legend(type = "symbol", labels = "  Weather station", shape = 4, size = 0.5, col = "firebrick") +
+    tm_layout(main.title = paste0("      ", scenarios_fixed[[scen]]),
+              main.title.position = "center",
+              main.title.size = 1.4,
+              main.title.color = "black",
+              legend.title.size = 0.85,
+              legend.text.size = 0.75,
+              legend.stack = "horizontal",
+              legend.outside = F,
+              legend.position = c(0, 0),
+              legend.width = -1,
+              legend.bg.color = "black",
+              legend.frame = "white",
+              outer.margins = c(0.01, 0.01, 0.01, 0.01),
+              bg.color = "black",
+              attr.color = "white",
+              outer.bg.color = "white")
   
   chill_map
   
-  tmap_save(chill_map, filename = f_name, height = height, width = width, units = 'cm')  
+  # Add the map to the list
+  chill_plot <- append(chill_plot, list(chill_map))
+  
+  #tmap_save(chill_map, filename = f_name, height = height, width = width, units = 'cm')  
   
   new_seq <- seq(-50, 90, by = 10)
   
@@ -415,19 +466,19 @@ for(scen in scenarios){
     tm_scale_bar(position = c(0.0225, 0.005), bg.color = "grey95", width = 0.15) +
     tm_layout(legend.outside = T, outer.margins = c(0.001, 0.001, 0, 0.001))
   
-  chill_correction
+  #chill_correction
   
-  tmap_save(chill_correction, filename = f_name,height = height, width = width, units = 'cm')  
+  #tmap_save(chill_correction, filename = f_name,height = height, width = width, units = 'cm')  
 
 } # End of loop to create interpolation maps
 
-
-
-# Compute the maps for change in chill accumulation
-
 # Change names in the list to scenario names
-
 names(chill_list) <- scenarios
+
+# Set the names of the elements of the list
+names(chill_plot) <- scenarios
+ 
+# Compute the maps for change in chill accumulation
 
 # Generate a baseline raster scenario based on the median across historic simulated scenarios
 
@@ -436,6 +487,10 @@ brick_raster <- brick(chill_list[2 : 11])
 # Estimate the median across raster layers
 
 median_raster_scen <- calc(brick_raster, median)
+
+# Create a list to save the change plots
+chill_cange_plot <- list()
+
 
 # Loop for change 2017 to future scenarios
 
@@ -447,29 +502,54 @@ for(scen in scenarios[12 : 23]){
   #split scenario name because so long
   x <- strsplit(scen, split = '_')
   
-  change_map <- tm_shape(mediterranean_base, bbox = st_bbox(extent(-10.5, 45.3, 25.25, 50))) +
-    tm_lines(col = 'grey') +
+  change_map <- tm_shape(mediterranean,  bbox = st_bbox(extent(-10, 45.3, 21, 49))) +
+    tm_fill(col = 'grey10') +
+    tm_shape(mediterranean_base) +
+    tm_lines(col = 'grey35') +
     tm_shape(chill_list[[scen]] - median_raster_scen) +
-    tm_raster(palette = get_brewer_pal("RdBu", contrast = c(0, 0.75)),
+    tm_raster(palette = get_brewer_pal('RdYlBu', n = 15),
+              title = "                 Safe Winter Chill",
               midpoint = 0,
-              title = paste('Median historic simulated to ', x[[1]][2], '\n', x[[1]][1], ' ',
-                            x[[1]][3], '\nchange in chill portions', sep = ''),
-              breaks = seq(-60, 30, by = 10), style = "cont", legend.reverse = TRUE) +
-    tm_shape(Porig) +
-    tm_symbols(size = 0.2, shape = 4, col = 'black') +
+              breaks = seq(-50, 40, by = 20), style = "cont", legend.reverse = TRUE,
+              legend.format = list(suffix = " CP", text.align = "center"), 
+              legend.is.portrait = FALSE) +
     tm_shape(mediterranean) +
-    tm_borders(col = 'black') +
-    tm_graticules(lines = F) +
-    tm_compass(position = c(0.02, 0.8)) +
-    tm_scale_bar(position = c(0.0225, 0.005), bg.color = "grey95", width = 0.15) +
-    tm_layout(legend.outside = T, outer.margins = c(0.001, 0.001, 0, 0.001))
+    tm_borders(col = 'grey40') +
+    tm_shape(Porig) + 
+    tm_symbols(size = 0.15, shape = 4, col = 'firebrick') +
+    tm_graticules(lines = F, labels.col = "black") +
+    tm_compass(position = c(0.035, 0.885), size = 1.75, text.size = 0.8) +
+    tm_scale_bar(position = c(0.005, 0.81), bg.color = "transparent", breaks = c(0, 200, 400, 600),
+                 text.size = 0.6,  color.dark = "grey20") +
+    tm_add_legend(type = "line", labels = "Excluded", col = "grey35", lwd = 3) +
+    tm_add_legend(type = "symbol", labels = "  Weather station", shape = 4, size = 0.5, col = "firebrick") +
+    tm_layout(main.title = paste0("      ", scenarios_fixed[[scen]]),
+              main.title.position = "center",
+              main.title.size = 1.4,
+              main.title.color = "black",
+              legend.title.size = 0.85,
+              legend.text.size = 0.75,
+              legend.stack = "horizontal",
+              legend.outside = F,
+              legend.position = c(0, 0),
+              legend.width = -1,
+              legend.bg.color = "black",
+              legend.frame = "white",
+              outer.margins = c(0.01, 0.01, 0.01, 0.01),
+              bg.color = "black",
+              attr.color = "white",
+              outer.bg.color = "white")
   
   change_map
   
-  tmap_save(change_map, filename = f_name,height = height, width = width, units = 'cm')  
+  chill_cange_plot <- append(chill_cange_plot, list(change_map))
+  
+  #tmap_save(change_map, filename = f_name,height = height, width = width, units = 'cm')  
   
 }
 
+# Set the names of the elements in chill_change_plot
+names(chill_cange_plot) <- scenarios[12 : 23]
 
 # Calculate change 1975 to 2019 (2019 minus 1975)
 
@@ -481,29 +561,90 @@ f_name <- paste0('figures/interpolation/maps/change/change_2017_', scen, '.png')
 
 x <- strsplit(scen, split = '_')
 
-change_map <- tm_shape(mediterranean_base, bbox = st_bbox(extent(-10.5, 45.3, 25.25, 50))) +
-  tm_lines(col = 'grey') +
-  tm_shape(chill_list[["Past_sim_2019"]] - chill_list[[scen]]) +
-  tm_raster(palette = get_brewer_pal("RdBu", contrast = c(0, 0.75)),
+change_map <- tm_shape(mediterranean,  bbox = st_bbox(extent(-10, 45.3, 21, 49))) +
+  tm_fill(col = 'grey10') +
+  tm_shape(mediterranean_base) +
+  tm_lines(col = 'grey35') +
+  tm_shape(chill_list[["Past_sim_2019"]] - chill_list[["Past_sim_1975"]]) +
+  tm_raster(palette = get_brewer_pal('RdYlBu', n = 15),
+            title = "           Safe Winter Chill",
             midpoint = 0,
-            title = '1975 to 2019\nChange in chill portions',
-            breaks = seq(-20, 20, 5),
-            style = "cont", legend.reverse = TRUE) +
-  tm_shape(Porig) +
-  tm_symbols(size = 0.2, shape = 4, col = 'black') + 
+            breaks = seq(-30, 30, by = 20), style = "cont", legend.reverse = TRUE,
+            legend.format = list(suffix = " CP", text.align = "center"), 
+            legend.is.portrait = FALSE) +
   tm_shape(mediterranean) +
-  tm_borders(col = 'black') +
-  tm_graticules(lines = F) +
-  tm_compass(position = c(0.02, 0.8)) +
-  tm_scale_bar(position = c(0.0225, 0.005), bg.color = "grey95", width = 0.15) +
-  tm_layout(legend.outside = T, outer.margins = c(0.001, 0.001, 0, 0.001))
+  tm_borders(col = 'grey40') +
+  tm_shape(Porig) + 
+  tm_symbols(size = 0.15, shape = 4, col = 'firebrick') +
+  tm_graticules(lines = F, labels.col = "black") +
+  tm_compass(position = c(0.035, 0.885), size = 1.75, text.size = 0.8) +
+  tm_scale_bar(position = c(0.005, 0.81), bg.color = "transparent", breaks = c(0, 200, 400, 600),
+               text.size = 0.6,  color.dark = "grey20") +
+  tm_add_legend(type = "line", labels = "Excluded", col = "grey35", lwd = 3) +
+  tm_add_legend(type = "symbol", labels = "  Weather station", shape = 4, size = 0.5, col = "firebrick") +
+  tm_layout(main.title = "     Chill change 2019 - 1975",
+            main.title.position = "center",
+            main.title.size = 1.4,
+            main.title.color = "black",
+            legend.title.size = 0.85,
+            legend.text.size = 0.75,
+            legend.stack = "horizontal",
+            legend.outside = F,
+            legend.position = c(0, 0),
+            legend.width = -1,
+            legend.bg.color = "black",
+            legend.frame = "white",
+            outer.margins = c(0.01, 0.01, 0.01, 0.01),
+            bg.color = "black",
+            attr.color = "white",
+            outer.bg.color = "white")
 
 change_map
 
-tmap_save(change_map, filename = f_name, height = height, width = width, units = 'cm')  
+#tmap_save(change_map, filename = f_name, height = height, width = width, units = 'cm')  
 
 
+# Plot the historic median SWC levels based on simulated scenarios
 
+chill_map_median <- tm_shape(mediterranean,  bbox = st_bbox(extent(-10, 45.3, 21, 49))) +
+  tm_fill(col = 'grey10') +
+  tm_shape(mediterranean_base) +
+  tm_lines(col = 'grey35') +
+  tm_shape(median_raster_scen) +
+  tm_raster(palette = get_brewer_pal('RdYlBu', n = 20),
+            title = "         Safe Winter Chill",
+            midpoint = 30,
+            breaks = seq(0, 100, by = 30), style = "cont", legend.reverse = TRUE,
+            legend.format = list(suffix = " CP", text.align = "center"), 
+            legend.is.portrait = FALSE) +
+  tm_shape(mediterranean) +
+  tm_borders(col = 'grey40') +
+  tm_shape(Porig) + 
+  tm_symbols(size = 0.15, shape = 4, col = 'firebrick') +
+  tm_graticules(lines = F, labels.col = "black") +
+  tm_compass(position = c(0.035, 0.885), size = 1.75, text.size = 0.8) +
+  tm_scale_bar(position = c(0.005, 0.81), bg.color = "transparent", breaks = c(0, 200, 400, 600),
+               text.size = 0.6,  color.dark = "grey20") +
+  tm_add_legend(type = "line", labels = "Excluded", col = "grey35", lwd = 3) +
+  tm_add_legend(type = "symbol", labels = "  Weather station", shape = 4, size = 0.5, col = "firebrick") +
+  tm_layout(main.title = "      Historic simulated (median 1975 - 2019)",
+            main.title.position = "center",
+            main.title.size = 1.4,
+            main.title.color = "black",
+            legend.title.size = 0.85,
+            legend.text.size = 0.75,
+            legend.stack = "horizontal",
+            legend.outside = F,
+            legend.position = c(0, 0),
+            legend.width = -1,
+            legend.bg.color = "black",
+            legend.frame = "white",
+            outer.margins = c(0.01, 0.01, 0.01, 0.01),
+            bg.color = "black",
+            attr.color = "white",
+            outer.bg.color = "white")
+
+chill_map_median
 
 
 

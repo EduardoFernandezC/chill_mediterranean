@@ -10,7 +10,7 @@ library(tidyverse)
 latitude <- 36.898146
 longitude <- 16.987244
 
-# List the 2,000 weather stations close to the point of interest. These weather stations are from the GSOD database
+# List the 5,000 weather stations close to the point of interest. These weather stations are from the GSOD database
 
 available_WS <- handle_gsod("list_stations", location = c(longitude, latitude),
                             stations_to_choose_from = 5000)
