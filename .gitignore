@@ -44,5 +44,11 @@ data/
 # excluding Rdata files
 *.RData
 
-# Excluding desktop files for mac
+# Excluding desktop files for macOS
 .DS_Store
+
+# Proyect things
+proyect_materials/
+
+# Manuscript
+manuscript/
