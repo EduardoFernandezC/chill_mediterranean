@@ -20,8 +20,14 @@ library(cartography) #needed to include structures like stripes to maps
 library(data.table)
 
 # Read the shape of the Mediterranean region
+mediterranean <- readOGR('~/Downloads/ref-countries-2020-01m/CNTR_RG_01M_2020_4326.shp/CNTR_RG_01M_2020_4326.shp')
 
-mediterranean <- readOGR("data/Med_outline/Med_outline.shp")
+# Define the limits for the region
+med_extent <- extent(-12.0, 49.0, 24.0, 50.0)
+
+# Crop the spatial object according to the limits set above
+mediterranean <- crop(mediterranean, med_extent)
+
 
 # Read the main data frame with all data
 
@@ -353,7 +359,7 @@ NAs_cross_validation <- as.data.frame(eval_df_final_sp[which(is.na(eval_df_final
 # Increase the coverage of the plot to fit the legends inside
 b <- bbox(Porig)
 b[1, ] <- c(-11, 45)
-b[2, ] <- c(15, 50)
+b[2, ] <- c(15, 49)
 b <- bbox(t(b))
 
 chill_residual <- tm_shape(mediterranean, bbox = b) +
@@ -391,6 +397,6 @@ chill_residual <- tm_shape(mediterranean, bbox = b) +
 
 chill_residual
 
-tmap_save(chill_residual, 'figures/final_figures/figure_5.png',
+tmap_save(chill_residual, 'figures/final_figures/figure_5B.png',
           width = 17.6, height = 23.4 / 2, units = "cm", dpi = 600)
   
