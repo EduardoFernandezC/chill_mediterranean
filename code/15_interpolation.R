@@ -23,11 +23,15 @@ library(cartography) #needed to include structures like stripes to maps
 # minimum temperatures
 
 # Read the shape of the Mediterranean region
+mediterranean <- readOGR('~/Downloads/ref-countries-2020-01m/CNTR_RG_01M_2020_4326.shp/CNTR_RG_01M_2020_4326.shp')
 
-mediterranean <- readOGR("data/Med_outline/Med_outline.shp")
+# Define the limits for the region
+med_extent <- extent(-15.0, 48.0, 21.0, 50.0)
+
+# Crop the spatial object according to the limits set above
+mediterranean <- crop(mediterranean, med_extent)
 
 # Read the main data frame with all data
-
 data <- read.csv("data/proj_plus_worldclim_plus_hist-summ.csv")
 
 # Create a spatial object from the data frame with information on the weather stations
@@ -62,7 +66,7 @@ mediterranean_base <- as_Spatial(mediterranean_base)
 mediterranean_base <- spTransform(mediterranean_base, CRSobj = crs(Porig))
 
 # Dashes plot check
-tm_shape(mediterranean_base,  bbox = st_bbox(extent(-15, 45.3, 20, 50))) +
+tm_shape(mediterranean_base,  bbox = st_bbox(extent(-14, 45.3, 25, 50))) +
   tm_lines(col = "grey50") +
   tm_shape(mediterranean) + 
   tm_borders(col = 'black') +
@@ -110,7 +114,7 @@ scenarios_fixed <- c(Past_obs_CP = "Historic observed", Past_sim_1975 = "Histori
                      rcp85_2085_pessimistic_CP = "RCP8.5 - 2085 pessimistic" )
 
 
-# Load Tmin and Tmax data from the WorldClim for Jan (still need to check if Dec or Feb is better)
+# Load Tmin and Tmax data from the WorldClim for Jan
 
 min_temp_jan <- raster("~/Dropbox/Doctorado/Projects/Paper_projects/Leading/chill_south_america/data/world_clim/wc2-2/wc2.1_30s_tmin_01.tif")
 max_temp_jan <- raster("~/Dropbox/Doctorado/Projects/Paper_projects/Leading/chill_south_america/data/world_clim/wc2-3/wc2.1_30s_tmax_01.tif")
@@ -406,9 +410,9 @@ for(scen in scenarios){
     tm_shape(mediterranean_base) +
     tm_lines(col = 'grey35') +
     tm_shape(r.m) +
-    tm_raster(palette = get_brewer_pal('RdYlBu', n = 20),
+    tm_raster(palette = c("#AF0926", "#DF422F", "#F7864E", "#FDC273", "#FEEFA7", "#EFF9DB", "#C0E3EF", "#8ABEDA", "#084A92", "#0A3A70"),
               title = "        Safe Winter Chill",
-              midpoint = 30,
+              midpoint = 35,
               breaks = seq(0, 100, by = 30), style = "cont", legend.reverse = TRUE,
               legend.format = list(suffix = " CP", text.align = "center"), 
               legend.is.portrait = FALSE) +
@@ -507,7 +511,7 @@ for(scen in scenarios[12 : 23]){
     tm_shape(mediterranean_base) +
     tm_lines(col = 'grey35') +
     tm_shape(chill_list[[scen]] - median_raster_scen) +
-    tm_raster(palette = get_brewer_pal('RdYlBu', n = 15),
+    tm_raster(palette = c("#AF0926", "#DF422F", "#F7864E", "#FDC273", "#FEEFA7", "#EFF9DB", "#C0E3EF", "#8ABEDA", "#084A92", "#0A3A70"),
               title = "                 Safe Winter Chill",
               midpoint = 0,
               breaks = seq(-50, 40, by = 20), style = "cont", legend.reverse = TRUE,
@@ -566,7 +570,7 @@ change_map <- tm_shape(mediterranean,  bbox = st_bbox(extent(-10, 45.3, 21, 49))
   tm_shape(mediterranean_base) +
   tm_lines(col = 'grey35') +
   tm_shape(chill_list[["Past_sim_2019"]] - chill_list[["Past_sim_1975"]]) +
-  tm_raster(palette = get_brewer_pal('RdYlBu', n = 15),
+  tm_raster(palette = c("#AF0926", "#DF422F", "#F7864E", "#FDC273", "#FEEFA7", "#EFF9DB", "#C0E3EF", "#8ABEDA", "#084A92", "#0A3A70"),
             title = "           Safe Winter Chill",
             midpoint = 0,
             breaks = seq(-30, 30, by = 20), style = "cont", legend.reverse = TRUE,
@@ -611,9 +615,9 @@ chill_map_median <- tm_shape(mediterranean,  bbox = st_bbox(extent(-10, 45.3, 21
   tm_shape(mediterranean_base) +
   tm_lines(col = 'grey35') +
   tm_shape(median_raster_scen) +
-  tm_raster(palette = get_brewer_pal('RdYlBu', n = 20),
-            title = "         Safe Winter Chill",
-            midpoint = 30,
+  tm_raster(palette = c("#AF0926", "#DF422F", "#F7864E", "#FDC273", "#FEEFA7", "#EFF9DB", "#C0E3EF", "#8ABEDA", "#084A92", "#0A3A70"),
+            title = "        Safe Winter Chill",
+            midpoint = 35,
             breaks = seq(0, 100, by = 30), style = "cont", legend.reverse = TRUE,
             legend.format = list(suffix = " CP", text.align = "center"), 
             legend.is.portrait = FALSE) +
