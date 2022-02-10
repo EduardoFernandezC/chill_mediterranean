@@ -274,15 +274,18 @@ for(scen in scenarios){
                                           z = NULL),
                size = 0.7) +
     geom_text_contour(stroke = 0.2, size = 2) +
-    labs(title = paste("Scenario:", scen)) +
-    ylab('Maximum temperature in January (°C)') +
-    xlab('Minimum temperature in January (°C)') +
-    theme_bw(base_size = 12)
+    #labs(title = paste("Scenario:", scen)) +
+    ylab('Monthly maximum temperature in January (°C)') +
+    xlab('Monthly minimum temperature in January (°C)') +
+    theme_bw(base_size = 12) +
+    theme(legend.title.align = 0.5,
+          legend.position = c(0.875, 0.3),
+          legend.background = element_blank())
   
   correction_plane
   
   # ggsave(plot = correction_plane,
-  #        filename = paste0('figures/interpolation/correction_plane/', scen, '.png'),
+  #        filename = paste0('figures/interpolation/correction_plane/', scen, 'supplementary.png'),
   #        height = 10, width = 15, units = 'cm', dpi = 600)
   
   # Save then number of rows and cols

@@ -40,3 +40,40 @@ figure_4
 # Save the figure to the folder
 tmap_save(figure_4, "figures/final_figures/figure_4B.png", width = 17.6, height = 23.4, units = "cm", dpi = 600)
 
+
+# Supplementary figures
+# Figure S2 is RCP4.5 - 2050 pessimistic and RCP4.5 - 2085 pessimistic
+figure_s2 <- tmap_arrange(chill_cange_plot[["rcp45_2050_pessimistic_CP"]],
+                          chill_cange_plot[["rcp45_2085_pessimistic_CP"]])
+
+figure_s2
+
+tmap_save(figure_s2, "figures/final_figures/figure_s2.png", width = 17.6, height = 23.4, units = "cm", dpi = 600)
+
+
+# Figure S3 is RCP8.5 - 2050 pessimistic and RCP8.5 - 2085 pessimistic
+figure_s3 <- tmap_arrange(chill_cange_plot[["rcp85_2050_pessimistic_CP"]],
+                          chill_cange_plot[["rcp85_2085_pessimistic_CP"]])
+
+figure_s3
+
+tmap_save(figure_s3, "figures/final_figures/figure_s3.png", width = 17.6, height = 23.4, units = "cm", dpi = 600)
+
+
+# Figure S4 is RCP4.5 - 2050 optimistic and RCP4.5 - 2085 optimistic
+figure_s4 <- tmap_arrange(chill_cange_plot[["rcp45_2050_optimistic_CP"]],
+                          chill_cange_plot[["rcp45_2085_optimistic_CP"]])
+
+figure_s4
+
+tmap_save(figure_s4, "figures/final_figures/figure_s4.png", width = 17.6, height = 23.4, units = "cm", dpi = 600)
+
+
+# Figure S5 is RCP8.5 - 2050 optimistic and RCP8.5 - 2085 optimistic
+figure_s5 <- tmap_arrange(chill_cange_plot[["rcp85_2050_optimistic_CP"]],
+                          chill_cange_plot[["rcp85_2085_optimistic_CP"]])
+
+figure_s5
+
+tmap_save(figure_s5, "figures/final_figures/figure_s5.png", width = 17.6, height = 23.4, units = "cm", dpi = 600)
+
