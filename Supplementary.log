@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2022.2.9)  10 FEB 2022 16:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2022.2.14)  15 FEB 2022 09:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -595,146 +595,110 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 {/Users/eduardofernandezc/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 163.
+(Font)              <10> on input line 162.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 163.
-
-Overfull \hbox (4.19408pt too wide) in paragraph at lines 218--218
-[]\T1/lmr/m/n/10 Longitude 
- []
-
-[2]
-Overfull \hbox (4.19408pt too wide) in paragraph at lines 287--287
-[]\T1/lmr/m/n/10 Longitude 
- []
-
-[3pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+(Font)              <7> on input line 162.
+[2pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.289 ...m}>{\raggedright\arraybackslash}p{2.5cm}}
+l.286 ...ggedleft}X>{\raggedleft}X>{\raggedleft}X}
                                                   ]
-Overfull \vbox (21.88246pt too high) has occurred while \output is active []
+Overfull \vbox (1.28242pt too high) has occurred while \output is active []
+
+[3]
+Overfull \vbox (1.28242pt too high) has occurred while \output is active []
 
 [4]
-Overfull \hbox (4.19408pt too wide) in paragraph at lines 355--355
-[]\T1/lmr/m/n/10 Longitude 
- []
-
-
-Overfull \vbox (21.88246pt too high) has occurred while \output is active []
+Overfull \vbox (11.62682pt too high) has occurred while \output is active []
 
 [5]
-Overfull \hbox (4.19408pt too wide) in paragraph at lines 421--421
-[]\T1/lmr/m/n/10 Longitude 
- []
-
-
-Overfull \vbox (13.28242pt too high) has occurred while \output is active []
+Overfull \vbox (8.58235pt too high) has occurred while \output is active []
 
 [6]
-Overfull \hbox (4.19408pt too wide) in paragraph at lines 487--487
-[]\T1/lmr/m/n/10 Longitude 
- []
-
-
-Overfull \vbox (21.68239pt too high) has occurred while \output is active []
+Overfull \vbox (11.62682pt too high) has occurred while \output is active []
 
 [7]
-Overfull \hbox (4.19408pt too wide) in paragraph at lines 553--553
-[]\T1/lmr/m/n/10 Longitude 
- []
+Overfull \vbox (9.68239pt too high) has occurred while \output is active []
 
-
-Overfull \vbox (15.22685pt too high) has occurred while \output is active []
-
-[8]
-Overfull \hbox (4.19408pt too wide) in paragraph at lines 619--619
-[]\T1/lmr/m/n/10 Longitude 
- []
-
-
-Overfull \vbox (4.88246pt too high) has occurred while \output is active []
-
-[9]
-Overfull \hbox (4.19408pt too wide) in paragraph at lines 677--677
-[]\T1/lmr/m/n/10 Longitude 
- []
-
-[10]
-<figures/interpolation/correction_plane/Past_sim_1975supplementary.png, id=74, 3556.28625pt x 2370.8575pt>
+[8] [9] [10pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.718 \newpage
+              ]
+<figures/interpolation/correction_plane/Past_sim_1975supplementary.png, id=80, 3556.28625pt x 2370.8575pt>
 File: figures/interpolation/correction_plane/Past_sim_1975supplementary.png Graphic file (type png)
 <use figures/interpolation/correction_plane/Past_sim_1975supplementary.png>
-Package pdftex.def Info: figures/interpolation/correction_plane/Past_sim_1975supplementary.png  used on input line 695.
+Package pdftex.def Info: figures/interpolation/correction_plane/Past_sim_1975supplementary.png  used on input line 735.
 (pdftex.def)             Requested size: 500.48138pt x 333.65425pt.
-<figures/final_figures/figure_s2.png, id=76, 4172.58875pt x 5547.72626pt>
+<figures/final_figures/figure_s2.png, id=82, 4172.58875pt x 5547.72626pt>
 File: figures/final_figures/figure_s2.png Graphic file (type png)
 <use figures/final_figures/figure_s2.png>
-Package pdftex.def Info: figures/final_figures/figure_s2.png  used on input line 715.
+Package pdftex.def Info: figures/final_figures/figure_s2.png  used on input line 755.
 (pdftex.def)             Requested size: 460.38689pt x 612.11412pt.
 
-LaTeX Warning: Float too large for page by 14.89957pt on input line 720.
+LaTeX Warning: Float too large for page by 14.89957pt on input line 760.
 
-<figures/final_figures/figure_s3.png, id=77, 4172.58875pt x 5547.72626pt>
+<figures/final_figures/figure_s3.png, id=83, 4172.58875pt x 5547.72626pt>
 File: figures/final_figures/figure_s3.png Graphic file (type png)
 <use figures/final_figures/figure_s3.png>
-Package pdftex.def Info: figures/final_figures/figure_s3.png  used on input line 724.
+Package pdftex.def Info: figures/final_figures/figure_s3.png  used on input line 764.
 (pdftex.def)             Requested size: 460.38689pt x 612.11412pt.
 
-LaTeX Warning: Float too large for page by 14.89957pt on input line 729.
+LaTeX Warning: Float too large for page by 14.89957pt on input line 769.
 
-<figures/final_figures/figure_s4.png, id=78, 4172.58875pt x 5547.72626pt>
+<figures/final_figures/figure_s4.png, id=84, 4172.58875pt x 5547.72626pt>
 File: figures/final_figures/figure_s4.png Graphic file (type png)
 <use figures/final_figures/figure_s4.png>
-Package pdftex.def Info: figures/final_figures/figure_s4.png  used on input line 733.
+Package pdftex.def Info: figures/final_figures/figure_s4.png  used on input line 773.
 (pdftex.def)             Requested size: 460.38689pt x 612.11412pt.
 
-LaTeX Warning: Float too large for page by 14.89957pt on input line 738.
+LaTeX Warning: Float too large for page by 14.89957pt on input line 778.
 
-<figures/final_figures/figure_s5.png, id=79, 4172.58875pt x 5547.72626pt>
+<figures/final_figures/figure_s5.png, id=85, 4172.58875pt x 5547.72626pt>
 File: figures/final_figures/figure_s5.png Graphic file (type png)
 <use figures/final_figures/figure_s5.png>
-Package pdftex.def Info: figures/final_figures/figure_s5.png  used on input line 742.
+Package pdftex.def Info: figures/final_figures/figure_s5.png  used on input line 782.
 (pdftex.def)             Requested size: 460.38689pt x 612.11412pt.
 
-LaTeX Warning: Float too large for page by 14.89957pt on input line 747.
+LaTeX Warning: Float too large for page by 14.89957pt on input line 787.
 
 [11pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.749 \end{document}
+l.789 \end{document}
                      <./figures/interpolation/correction_plane/Past_sim_1975supplementary.png>] [12pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.749 \end{document}
+l.789 \end{document}
                      <./figures/final_figures/figure_s2.png>] [13pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.749 \end{document}
+l.789 \end{document}
                      <./figures/final_figures/figure_s3.png>] [14pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.749 \end{document}
+l.789 \end{document}
                      <./figures/final_figures/figure_s4.png>] [15pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.749 \end{document}
+l.789 \end{document}
                      <./figures/final_figures/figure_s5.png>] (./Supplementary.aux)
 Package rerunfilecheck Info: File `Supplementary.out' has not changed.
-(rerunfilecheck)             Checksum: 980C80ECA1A6E0966666943E2CC48371;612.
+(rerunfilecheck)             Checksum: 8CE86A533FB0FBDC0B0960C72F016EB2;861.
  ) 
 Here is how much of TeX's memory you used:
- 13728 strings out of 480238
- 219182 string characters out of 5894107
- 581081 words of memory out of 5000000
- 31382 multiletter control sequences out of 15000+600000
+ 13732 strings out of 480238
+ 219283 string characters out of 5894106
+ 584277 words of memory out of 5000000
+ 31383 multiletter control sequences out of 15000+600000
  512379 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,15n,63p,811b,464s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,15n,63p,811b,484s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb>
-Output written on Supplementary.pdf (15 pages, 8876306 bytes).
+Output written on Supplementary.pdf (15 pages, 8931694 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 111 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
- 58 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 160 PDF objects out of 1000 (max. 8388607)
+ 118 compressed objects within 2 object streams
+ 33 named destinations out of 1000 (max. 500000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 
