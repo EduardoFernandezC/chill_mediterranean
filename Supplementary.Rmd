@@ -48,7 +48,7 @@ library(tidyverse)
 
 ## Introduction
 
-In this document, we provide supplementary materials for the work 'Winter chill simulations combined with expert knowledge emphasize the vulnerability of temperate fruit orchards in the Mediterranean region' by Eduardo Fernandez and co-authors. The study is published in the journal Climatic Change under the doi: DOI. We conducted this work in collaboration with researchers from northern and southern Spain, Tunisia, Morocco and Germany under the umbrella of an international project [(AdaMedOr)](https://mel.cgiar.org/projects/adamedor) funded by the Partnership for Research and Innovation in the Mediterranean Area (PRIMA).
+In this document, we provide supplementary materials for the work 'Winter chill simulations combined with expert knowledge emphasize the vulnerability of temperate fruit orchards in the Mediterranean region' by Eduardo Fernandez and co-authors. The study is published in the journal Global Change Biology under the doi: DOI. We conducted this work in collaboration with researchers from northern and southern Spain, Tunisia, Morocco and Germany under the umbrella of an international project [(AdaMedOr)](https://mel.cgiar.org/projects/adamedor) funded by the Partnership for Research and Innovation in the Mediterranean Area (PRIMA).
 
 Compared to previous similar studies, we provide now an analysis that combines the spatial interpolation of winter chill accumulation in the Mediterranean region under future scenarios with expert's knowledge regarding the impacts of climate change on temperate orchards as well as future concerns of farmers cultivating temperate species. Our approach allowed us to frame and contextualize the results of our chill estimations, potentially contributing to the development of management strategies to adapt Mediterranean orchards to future climate conditions.
 
@@ -150,7 +150,7 @@ kableExtra::kable(table_s1_h, format = "latex", booktabs = T, escape = T, digits
 
 ## Climate models used in the projections
 
-In Table S2, we show the 15 climate models used in the analysis to obtain future temperature data from the ClimateWizard data base. As described in the main manuscript, we later grouped these models into "pessimistic", "intermediate" and "optimistic" classes according to Safe Winter Chill computations.
+In Table S2, we show the 15 climate models used in the analysis to obtain future temperature data from the ClimateWizard data base. As described in the main manuscript, we later grouped these models into "pessimistic", "intermediate" and "optimistic" classes according to Safe Winter Chill distributions.
 
 ```{r table_s2, echo = FALSE, message = FALSE, warning = FALSE}
 table_s2 <- read.csv("data/table_s2.csv")
