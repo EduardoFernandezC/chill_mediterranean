@@ -31,31 +31,17 @@ weather_stations[["STATION.NAME"]] <- gsub("/", "-", weather_stations$STATION.NA
 
 weather_data <- list()
 
-# Start the for loop. Please, note that according to your stations, you should change the vector in which
-# 'i' will move.
-#
-# This is the proposed distribution of weather stations
-# 
-# Erica: from 1 to 131
-# Hajar: from 132 to 264
-# Theresa: from 265 to 397
-# Alvaro: from 398 to 530
-# Marius' computer in the office: from 531 to 663
-# Me: from 664 to 792
-#
-# Please replace the vector 'xx : xx' with your numbers
-
-for (i in 398 : 442) {
+for (i in 1 : nrow(weather_stations)) {
   
   # Download the data for the weather station 'i'. I will use suppressWarnings() because the function produces
   # a warning in case no data is found for the period of interest. Since we are aware of that, we can skip the
   # the warning and deal with the problem in a later step
   
-  data <- suppressWarnings(handle_gsod_2("download_weather",
-                                         location = as.character(weather_stations[i, "chillR_code"]),
-                                         time_interval = c(1974, 2020),
-                                         station_list = weather_stations,
-                                         quiet = TRUE))
+  data <- suppressWarnings(handle_gsod("download_weather",
+                                       location = as.character(weather_stations[i, "chillR_code"]),
+                                       time_interval = c(1974, 2020),
+                                       station_list = weather_stations,
+                                       quiet = TRUE))
   
   # Convert the downloaded data into chillR format
   
