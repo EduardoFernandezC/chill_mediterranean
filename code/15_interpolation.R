@@ -577,7 +577,7 @@ change_map <- tm_shape(mediterranean,  bbox = st_bbox(extent(-10, 45.3, 21, 49))
   tm_shape(chill_list[["Past_sim_2019"]] - chill_list[["Past_sim_1975"]]) +
   tm_raster(palette = c("#AF0926", "#DF422F", "#F7864E", "#FDC273", "#FEEFA7", "#EFF9DB", "#C0E3EF", "#8ABEDA", "#084A92", "#0A3A70",
                         "#053061"),
-            title = "Safe Winter Chill change (CP)",
+            title = "   Safe Winter Chill change (CP)",
             midpoint = 0,
             breaks = seq(-30, 30, by = 10), style = "cont", legend.reverse = TRUE,
             legend.format = list(text.align = "center"), 

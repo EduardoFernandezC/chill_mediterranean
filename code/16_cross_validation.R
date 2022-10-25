@@ -374,7 +374,7 @@ chill_residual <- tm_shape(mediterranean, bbox = b) +
   tm_shape(eval_df_final_sp) +
   tm_bubbles(col = 'median_res', size = 'sd', palette = get_brewer_pal("RdYlBu", n = 30),
              midpoint = 0, style = "cont", breaks = seq(-40, 30, 10), legend.col.reverse = TRUE,
-             title.size = "       SD residual (CP)", title.col = "   Median residual (CP)",
+             title.size = "       SD residual (CP)", title.col = "     Median residual (CP)",
              legend.format = list(text.align = "center"), legend.col.z = 2,
              legend.size.z = 1, border.col = "grey10", legend.col.is.portrait = FALSE,
              sizes.legend = c(1, 3, 6, 9, 12, 15)) + 
@@ -397,6 +397,6 @@ chill_residual <- tm_shape(mediterranean, bbox = b) +
 
 chill_residual
 
-tmap_save(chill_residual, 'figures/final_figures/figure_5C.png',
+tmap_save(chill_residual, 'figures/final_figures/figures_revised/figure_6_revised.pdf',
           width = 17.6, height = 23.4 / 2, units = "cm", dpi = 600)
   
