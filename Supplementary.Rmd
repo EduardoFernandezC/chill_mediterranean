@@ -1,18 +1,19 @@
 ---
 title: "Supplementary materials for 'Winter chill simulations combined with expert knowledge emphasize the vulnerability of temperate fruit orchards in the Mediterranean region'"
 author:
-  - Eduardo Fernandez^1^[^*], Hajar Mojahid^1^, Erica Fadón^2,3^, Javier Rodrigo^2,3^, David Ruiz^4^,
-  - Jose A. Egea^4^, Mehdi Ben Mimoun^5^, Ossama Kodad^6^, Adnane El Yaacoubi^7^, Mohamed Ghrab^8^,
-  - José Egea^4^, Haifa BenMoussa^5,9^, Nadia Borgini^5^, Olfa Elloumi^8^ and Eike Luedeling^1^  
+  - Eduardo Fernandez^1,2^[^*], Hajar Mojahid^1^, Erica Fadón^3,4^, Javier Rodrigo^3,4^, David Ruiz^5^,
+  - Jose A. Egea^5^, Mehdi Ben Mimoun^6^, Ossama Kodad^7^, Adnane El Yaacoubi^8^, Mohamed Ghrab^9^,
+  - José Egea^5^, Haifa BenMoussa^6,10^, Nadia Borgini^6^, Olfa Elloumi^9^ and Eike Luedeling^2^  
 date: ^1^ Department of Horticultural Science, Institute of Crop Science and Resource Conservation (INRES), University of Bonn, 53121 Bonn, Germany \newline
-      ^2^ Department of Plant Science, Centro de Investigación y Tecnología Agroalimentaria de Aragón (CITA), Gobierno de Aragón, Avda. Montañana 930, 50059 Zaragoza, Spain \newline
-      ^3^ Instituto Agroalimentario de Aragón-IA2 (CITA-Universidad de Zaragoza), 50013 Zaragoza, Spain \newline
-      ^4^ Department of Plant Breeding, Fruit Breeding Group, CEBAS-CSIC, PO Box 164, Espinardo, 30100 Murcia, Spain \newline
-      ^5^ University of Carthage, Institut National Agronomique de Tunisie (INAT), Laboratory GREEN-TEAM (LR17AGR01), 43 avenue Charles Nicolle, 1082 Tunis, Tunisia \newline
-      ^6^ National School of Agriculture of Meknes (ENAM), Department of Arboriculture and Viticulture, PB. S/40, 50000 Meknes, Morocco \newline
-      ^7^ University Sultan Moulay Slimane, Higher School of Technology Khenifra, P.B. 170, Khenifra, Morocco \newline
-      ^8^ University of Sfax, Olive Institute, LR16IO01 & LR16IO02, BP 1087 Sfax 3000, Tunisia \newline
-      ^9^ University of Carthage, Higher School of Agriculture of Mograne, Department of Agricultural Production, Zaghouan, Tunisia
+      ^2^ Escuela de Agronomía, Pontificia Universidad Católica de Valparaíso, Casilla 4-D, Quillota, Chile \newline
+      ^3^ Department of Plant Science, Centro de Investigación y Tecnología Agroalimentaria de Aragón (CITA), Gobierno de Aragón, Avda. Montañana 930, 50059 Zaragoza, Spain \newline
+      ^4^ Instituto Agroalimentario de Aragón-IA2 (CITA-Universidad de Zaragoza), 50013 Zaragoza, Spain \newline
+      ^5^ Department of Plant Breeding, Fruit Breeding Group, CEBAS-CSIC, PO Box 164, Espinardo, 30100 Murcia, Spain \newline
+      ^6^ University of Carthage, Institut National Agronomique de Tunisie (INAT), Laboratory GREEN-TEAM (LR17AGR01), 43 avenue Charles Nicolle, 1082 Tunis, Tunisia \newline
+      ^7^ National School of Agriculture of Meknes (ENAM), Department of Arboriculture and Viticulture, PB. S/40, 50000 Meknes, Morocco \newline
+      ^8^ University Sultan Moulay Slimane, Higher School of Technology Khenifra, P.B. 170, Khenifra, Morocco \newline
+      ^9^ University of Sfax, Olive Institute, LR16IO01 & LR16IO02, BP 1087 Sfax 3000, Tunisia \newline
+      ^10^ University of Carthage, Higher School of Agriculture of Mograne, Department of Agricultural Production, Zaghouan, Tunisia
 geometry: margin=2cm
 output: 
   pdf_document: default
@@ -44,11 +45,11 @@ library(kableExtra)
 library(tidyverse)
 ```
 
-[^*]: Corresponding author: Eduardo Fernández (efernand@uni-bonn.de)
+[^*]: Corresponding author: Eduardo Fernández (eduardo.fernandez.c@pucv.cl)
 
 ## Introduction
 
-In this document, we provide supplementary materials for the work 'Winter chill simulations combined with expert knowledge emphasize the vulnerability of temperate fruit orchards in the Mediterranean region' by Eduardo Fernandez and co-authors. The study is published in the journal Global Change Biology under the doi: DOI. We conducted this work in collaboration with researchers from northern and southern Spain, Tunisia, Morocco and Germany under the umbrella of an international project [(AdaMedOr)](https://mel.cgiar.org/projects/adamedor) funded by the Partnership for Research and Innovation in the Mediterranean Area (PRIMA).
+In this document, we provide supplementary materials for the work 'Winter chill simulations combined with expert knowledge emphasize the vulnerability of temperate fruit orchards in the Mediterranean region' by Eduardo Fernandez and co-authors. The study is published in the journal Regional Environmental Change under the doi: DOI. We conducted this work in collaboration with researchers from northern and southern Spain, Tunisia, Morocco and Germany under the umbrella of an international project [(AdaMedOr)](https://mel.cgiar.org/projects/adamedor) funded by the Partnership for Research and Innovation in the Mediterranean Area (PRIMA).
 
 Compared to previous similar studies, we provide now an analysis that combines the spatial interpolation of winter chill accumulation in the Mediterranean region under future scenarios with expert's knowledge regarding the impacts of climate change on temperate orchards as well as future concerns of farmers cultivating temperate species. Our approach allowed us to frame and contextualize the results of our chill estimations, potentially contributing to the development of management strategies to adapt Mediterranean orchards to future climate conditions.
 

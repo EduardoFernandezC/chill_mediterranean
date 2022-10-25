@@ -77,3 +77,69 @@ figure_s5
 
 tmap_save(figure_s5, "figures/final_figures/figure_s5.png", width = 17.6, height = 23.4, units = "cm", dpi = 600)
 
+
+# New figure 1 (after revisions on Oct 2022) showing the weather stations we used. Figure created with tmap and other
+# libraries
+
+# Load the required libraries
+library(tmap)
+
+# Read the file containing the initial 387 weather stations. Remember that, for several reasons, the final number of stations
+# reduced to 347
+stations <- read.csv("data/table_s1.csv")
+
+# Transform the data frame into a spatial object
+stations_sp <- sp::SpatialPointsDataFrame(stations[, c("Long", "Lat")],
+                                          proj4string = sp::CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"),
+                                          data = stations[, -(which(colnames(stations) %in% 
+                                                                      c("Long", "Lat")))])
+
+# Read the shape of the Mediterranean region
+mediterranean <- rgdal::readOGR('~/Downloads/ref-countries-2020-01m/CNTR_RG_01M_2020_4326.shp/CNTR_RG_01M_2020_4326.shp')
+
+# Define the limits for the region
+med_extent <- raster::extent(-12.0, 47, 25.0, 50.0)
+
+# Crop the spatial object according to the limits set above
+mediterranean <- terra::crop(mediterranean, med_extent)
+
+# Replace point boundary extent with that of the Mediterranean to make sure the interpolation is done for the whole extent
+# of the Mediterranean
+stations_sp@bbox <- mediterranean@bbox
+
+# Define Med extent to get elevation
+elevation_med_extent <- terra::crop(mediterranean, raster::extent(-10, 45, 21, 49))
+
+# Get the elevation model of the Mediterranean
+elevation_med <- elevatr::get_elev_raster(elevation_med_extent, clip = "bbox", z = 6, neg_to_na = TRUE)
+
+# Create the map
+stations_map <- tm_shape(elevation_med, bbox = raster::extent(-10, 45, 20, 49)) +
+  tm_raster(breaks = seq(0, 4500, 1500), style = "cont", title = "Elevation (m.a.s.l.)",
+            legend.is.portrait = FALSE) +
+  tm_shape(mediterranean, bbox = raster::extent(-10, 45, 20, 49)) +
+  tm_borders(col = 'grey40', lwd = 0.8) +
+  tm_graticules(lines = FALSE, labels.size = 0.6, labels.col = "black") +
+  tm_shape(stations_sp) +
+  tm_symbols(size = 0.1, shape = 4, col = 'steelblue4') +
+  tm_compass(position = c(0.93, 0.05), text.size = 0.5) +
+  tm_scale_bar(position = c(0.57, 0.055), bg.color = 'transparent', text.size = 0.5, color.dark = "grey20") +
+  tm_add_legend(type = "symbol", labels = "Weather station",
+                col = "steelblue4", shape = 4, size = 0.35, title = "") +
+  tm_layout(legend.outside = FALSE,
+            legend.position = c(0.05, 0.015),
+            legend.bg.color = "transparent",
+            outer.margins = c(0.02, 0.02, 0.02, 0.02),
+            legend.title.size = 0.9,
+            legend.text.size = 0.6,
+            legend.width = -0.5,
+            legend.stack = "horizontal",
+            bg.color = "white",
+            
+            attr.color = "black")
+
+stations_map
+
+tmap_save(stations_map, 'figures/final_figures/figure_1_revised_white.pdf',
+          height = 12.5, width = 15.6, units = 'cm', dpi = 600)
+
