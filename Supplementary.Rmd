@@ -1,5 +1,5 @@
 ---
-title: "Supplementary materials for 'Winter chill simulations combined with expert knowledge emphasize the vulnerability of temperate fruit orchards in the Mediterranean region'"
+title: "Supplementary materials for 'Climate change impacts on winter chill in Mediterranean temperate fruit orchards'"
 author:
   - Eduardo Fernandez^1,2^[^*], Hajar Mojahid^1^, Erica Fadón^3,4^, Javier Rodrigo^3,4^, David Ruiz^5^,
   - Jose A. Egea^5^, Mehdi Ben Mimoun^6^, Ossama Kodad^7^, Adnane El Yaacoubi^8^, Mohamed Ghrab^9^,
@@ -21,8 +21,8 @@ bibliography: packages.bib
 header-includes:
   \usepackage{fancyhdr}
   \pagestyle{fancy}
-  \fancyhead[R]{Future vulnerability of temperate fruit orchards in the Mediterranean}
-  \fancyhead[L]{Fernandez et al. (XX)}
+  \fancyhead[R]{Future winter chill for temperate fruit orchards in the Mediterranean}
+  \fancyhead[L]{Fernandez et al. (2022)}
   \usepackage{pdfpages}
   \usepackage{pdflscape}
   \renewcommand{\figurename}{Figure S}
@@ -49,7 +49,7 @@ library(tidyverse)
 
 ## Introduction
 
-In this document, we provide supplementary materials for the work 'Winter chill simulations combined with expert knowledge emphasize the vulnerability of temperate fruit orchards in the Mediterranean region' by Eduardo Fernandez and co-authors. The study is published in the journal Regional Environmental Change under the doi: DOI. We conducted this work in collaboration with researchers from northern and southern Spain, Tunisia, Morocco and Germany under the umbrella of an international project [(AdaMedOr)](https://mel.cgiar.org/projects/adamedor) funded by the Partnership for Research and Innovation in the Mediterranean Area (PRIMA).
+In this document, we provide supplementary materials for the work 'Winter chill simulations combined with expert knowledge emphasize the vulnerability of temperate fruit orchards in the Mediterranean region' by Eduardo Fernandez and co-authors. The study is published in the journal Regional Environmental Change under the doi: [10.1007/s10113-022-02006-x](https://doi.org/10.1007/s10113-022-02006-x). We conducted this work in collaboration with researchers from northern and southern Spain, Tunisia, Morocco and Germany under the umbrella of an international project [(AdaMedOr)](https://mel.cgiar.org/projects/adamedor) funded by the Partnership for Research and Innovation in the Mediterranean Area (PRIMA).
 
 Compared to previous similar studies, we provide now an analysis that combines the spatial interpolation of winter chill accumulation in the Mediterranean region under future scenarios with expert's knowledge regarding the impacts of climate change on temperate orchards as well as future concerns of farmers cultivating temperate species. Our approach allowed us to frame and contextualize the results of our chill estimations, potentially contributing to the development of management strategies to adapt Mediterranean orchards to future climate conditions.
 
