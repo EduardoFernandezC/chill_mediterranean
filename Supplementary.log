@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.26)  29 NOV 2022 12:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.26)  29 NOV 2022 20:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -597,9 +597,9 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 {/Users/eduardofernandezc/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 165.
+(Font)              <10> on input line 164.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 165.
+(Font)              <7> on input line 164.
 [2]
 Overfull \vbox (1.28242pt too high) has occurred while \output is active []
 
@@ -622,39 +622,39 @@ Overfull \vbox (9.68239pt too high) has occurred while \output is active []
 <figures/interpolation/correction_plane/Past_sim_1975supplementary.png, id=81, 3556.28625pt x 2370.8575pt>
 File: figures/interpolation/correction_plane/Past_sim_1975supplementary.png Graphic file (type png)
 <use figures/interpolation/correction_plane/Past_sim_1975supplementary.png>
-Package pdftex.def Info: figures/interpolation/correction_plane/Past_sim_1975supplementary.png  used on input line 738.
+Package pdftex.def Info: figures/interpolation/correction_plane/Past_sim_1975supplementary.png  used on input line 739.
 (pdftex.def)             Requested size: 500.48138pt x 333.65425pt.
 <figures/final_figures/figure_s2.png, id=83, 4172.58875pt x 5547.72626pt>
 File: figures/final_figures/figure_s2.png Graphic file (type png)
 <use figures/final_figures/figure_s2.png>
-Package pdftex.def Info: figures/final_figures/figure_s2.png  used on input line 758.
+Package pdftex.def Info: figures/final_figures/figure_s2.png  used on input line 759.
 (pdftex.def)             Requested size: 460.38689pt x 612.11412pt.
 
-LaTeX Warning: Float too large for page by 14.89957pt on input line 763.
+LaTeX Warning: Float too large for page by 14.89957pt on input line 764.
 
 <figures/final_figures/figure_s3.png, id=84, 4172.58875pt x 5547.72626pt>
 File: figures/final_figures/figure_s3.png Graphic file (type png)
 <use figures/final_figures/figure_s3.png>
-Package pdftex.def Info: figures/final_figures/figure_s3.png  used on input line 767.
+Package pdftex.def Info: figures/final_figures/figure_s3.png  used on input line 768.
 (pdftex.def)             Requested size: 460.38689pt x 612.11412pt.
 
-LaTeX Warning: Float too large for page by 14.89957pt on input line 772.
+LaTeX Warning: Float too large for page by 14.89957pt on input line 773.
 
 <figures/final_figures/figure_s4.png, id=85, 4172.58875pt x 5547.72626pt>
 File: figures/final_figures/figure_s4.png Graphic file (type png)
 <use figures/final_figures/figure_s4.png>
-Package pdftex.def Info: figures/final_figures/figure_s4.png  used on input line 776.
+Package pdftex.def Info: figures/final_figures/figure_s4.png  used on input line 777.
 (pdftex.def)             Requested size: 460.38689pt x 612.11412pt.
 
-LaTeX Warning: Float too large for page by 14.89957pt on input line 781.
+LaTeX Warning: Float too large for page by 14.89957pt on input line 782.
 
 <figures/final_figures/figure_s5.png, id=86, 4172.58875pt x 5547.72626pt>
 File: figures/final_figures/figure_s5.png Graphic file (type png)
 <use figures/final_figures/figure_s5.png>
-Package pdftex.def Info: figures/final_figures/figure_s5.png  used on input line 785.
+Package pdftex.def Info: figures/final_figures/figure_s5.png  used on input line 786.
 (pdftex.def)             Requested size: 460.38689pt x 612.11412pt.
 
-LaTeX Warning: Float too large for page by 14.89957pt on input line 790.
+LaTeX Warning: Float too large for page by 14.89957pt on input line 791.
 
 [11 <./figures/interpolation/correction_plane/Past_sim_1975supplementary.png>] [12 <./figures/final_figures/figure_s2.png>] [13 <./figures/final_figures/figure_s3.png>] [14 <./figures/final_figures/figure_s4.png>] [15 <./figures/final_figures/figure_s5.png>] (./Supplementary.aux)
 Package rerunfilecheck Info: File `Supplementary.out' has not changed.
@@ -663,13 +663,13 @@ Package rerunfilecheck Info: File `Supplementary.out' has not changed.
 Here is how much of TeX's memory you used:
  13758 strings out of 479997
  220498 string characters out of 5886614
- 596632 words of memory out of 5000000
+ 596638 words of memory out of 5000000
  31642 multiletter control sequences out of 15000+600000
  512379 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  60i,15n,67p,811b,557s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/eduardofernandezc/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb>
-Output written on Supplementary.pdf (15 pages, 8931146 bytes).
+Output written on Supplementary.pdf (15 pages, 8931280 bytes).
 PDF statistics:
  161 PDF objects out of 1000 (max. 8388607)
  119 compressed objects within 2 object streams
